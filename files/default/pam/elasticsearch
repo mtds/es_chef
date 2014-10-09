@@ -1,0 +1,8 @@
+# /etc/pam.d/elasticsearch
+#
+# DO NOT CHANGE THIS FILE MANUALLY!
+#
+# This file is managed by the Chef `elasticsearch` cookbook.
+
+# Set up user limits from /etc/security/limits.conf.d/10-elasticsearch.conf.
+session    required     pam_limits.so
