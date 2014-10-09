@@ -48,6 +48,20 @@ default.elasticsearch[:index][:store][:type] = 'mmapfs' # Used on Linux 64 bit J
 default.elasticsearch[:action][:auto_create_index] = true
 default.elasticsearch[:action][:disable_delete_all_indices] = true
 
+# === THREAD POOL
+#
+default.elasticsearch[:threadpool][:bulk][:type] = 'fixed' 
+default.elasticsearch[:threadpool][:bulk][:size] = "#{(node.cpu.total.to_i)}"
+default.elasticsearch[:threadpool][:bulk][:queue_size] = 50
+
+default.elasticsearch[:threadpool][:index][:type] = 'fixed' 
+default.elasticsearch[:threadpool][:index][:size] = "#{(node.cpu.total.to_i)}"
+default.elasticsearch[:threadpool][:index][:queue_size] = 200
+
+default.elasticsearch[:threadpool][:search][:type] = 'fixed' 
+default.elasticsearch[:threadpool][:search][:size] = "#{(node.cpu.total.to_i * 3)}"
+default.elasticsearch[:threadpool][:search][:queue_size] = 1000
+
 # === DISCOVERY SETTINGS
 #
 default.elasticsearch[:discovery][:zen][:ping][:multicast][:enabled] = false
