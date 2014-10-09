@@ -99,6 +99,40 @@ node.data: <%= node.elasticsearch[:node][:data] %>
 # the index status.
 
 
+############################# Thread Pools ####################################
+
+# A node holds several thread pools in order to improve how threads are managed and 
+# memory consumption within a node.
+# (ref: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/modules-threadpool.html)
+
+# The fixed thread pool holds a fixed size of threads to handle the requests 
+# with a queue (optionally bounded) for pending requests that have no threads 
+# to service them.
+
+# The size parameter controls the number of threads, and defaults to the number 
+# of cores (or for the search threadpool to: 3x no. of available processors).
+
+# The queue_size allows to control the size of the queue of pending requests 
+# that have no threads to execute them. By default, it is set to -1 which means 
+# it's unbounded. When a request comes in and the queue is full, it will abort 
+# the request.
+
+# Bulk pool
+threadpool.bulk.type: <%= node.elasticsearch[:threadpool][:bulk][:type] %>
+threadpool.bulk.size: <%= node.elasticsearch[:threadpool][:bulk][:size] %>
+threadpool.bulk.queue_size: <%= node.elasticsearch[:threadpool][:bulk][:queue_size] %>
+
+# Index thread pool:
+threadpool.index.type: <%= node.elasticsearch[:threadpool][:index][:type] %>
+threadpool.index.size: <%= node.elasticsearch[:threadpool][:index][:size] %>
+threadpool.index.queue_size: <%= node.elasticsearch[:threadpool][:index][:queue_size] %>
+
+# Search thread pool:
+threadpool.search.type: <%= node.elasticsearch[:threadpool][:search][:type] %>
+threadpool.search.size: <%= node.elasticsearch[:threadpool][:search][:size] %>
+threadpool.search.queue_size:  <%= node.elasticsearch[:threadpool][:search][:queue_size] %>
+
+
 #################################### Paths ####################################
 
 # Path to directory containing configuration (this file and logging.yml):
