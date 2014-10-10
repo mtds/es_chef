@@ -7,6 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
+[Chef::Recipe, Chef::Resource].each { |l| l.send :include, ::Extensions }
+
+# Java and ES packages:
 %w{openjdk-7-jdk elasticsearch}.each do |pkg|
    package pkg
 end
@@ -40,6 +43,13 @@ end
 template "/etc/elasticsearch/elasticsearch.yml" do
   source "elasticsearch.yml.erb"
   notifies :restart, 'service[elasticsearch]'
+end
+
+# ES Plugins:
+if node[:elasticsearch][:plugins][:enable]
+  node[:elasticsearch][:plugins].each do | name, config |
+    install_plugin name, config
+  end
 end
 
 service "elasticsearch" do
