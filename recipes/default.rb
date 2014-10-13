@@ -46,7 +46,7 @@ template "/etc/elasticsearch/elasticsearch.yml" do
 end
 
 # ES Plugins:
-if node[:elasticsearch][:plugins][:enable]
+if node[:elasticsearch][:plugins_enable] 
   node[:elasticsearch][:plugins].each do | name, config |
     install_plugin name, config
   end
