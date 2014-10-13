@@ -82,3 +82,8 @@ default.elasticsearch[:thread_stack_size] = "256k"
 # === PORT
 #
 default.elasticsearch[:http][:port] = 9200
+
+# === PLUGINS
+#
+default.elasticsearch[:plugins][:enable] = false
+default.elasticsearch[:plugins]= Hash.new
