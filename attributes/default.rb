@@ -85,5 +85,5 @@ default.elasticsearch[:http][:port] = 9200
 
 # === PLUGINS
 #
-default.elasticsearch[:plugins][:enable] = false
+default.elasticsearch[:plugins_enable] = false
 default.elasticsearch[:plugins]= Hash.new
