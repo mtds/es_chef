@@ -40,11 +40,8 @@ module Extensions
         url     = params['url']     ? " -url #{params['url']}" : nil
 
 	# When working with a host with two version of OpenJDK installed (6 and 7)
-	# you must specify which version you want use before calling the plugin
-	# script. 
-	# The OpenJDK version 7 works correctly while the version 6 raise 
-	# an 'java.lang.UnsupportedClassVersionError'.
-	ENV['JAVA_HOME'] = "/usr/lib/jvm/java-7-openjdk-amd64"
+	# you must be sure that version 7 is used, otherwise the plugin script
+	# will raise an 'java.lang.UnsupportedClassVersionError'.
 
         plugin_install = "/usr/share/elasticsearch/bin/plugin -DproxyHost=proxy.gsi.de -DproxyPort=3128 -install #{name}#{version}#{url} --timeout 1m"
         Chef::Log.debug plugin_install
