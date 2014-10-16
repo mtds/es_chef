@@ -14,6 +14,9 @@
    package pkg
 end
 
+# Check if we are using the OpenJDK version 7:
+check_java
+
 # Set some limits for ES:
 template "/etc/security/limits.d/10-elasticsearch.conf" do
   source "10-elasticsearch.conf.erb"
