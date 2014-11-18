@@ -30,7 +30,7 @@ MAX_LOCKED_MEMORY=<%= node.elasticsearch[:limits][:memlock] %>
 MAX_OPEN_FILES=65535
 
 # Maximum number of VMA (Virtual Memory Areas) a process can own
-<% if node[:index][:store][:type]=='mmapfs' -%>
+<% if node.elasticsearch[:index][:store][:type]=='mmapfs' -%>
 MAX_MAP_COUNT=262144
 <% else -%>
 MAX_MAP_COUNT=65536
