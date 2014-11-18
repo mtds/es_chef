@@ -30,6 +30,7 @@ default.elasticsearch[:gc_settings] =<<-CONFIG
   -XX:CMSInitiatingOccupancyFraction=75
   -XX:+UseCMSInitiatingOccupancyOnly
   -XX:+HeapDumpOnOutOfMemoryError
+  -XX:+DisableExplicitGC
 CONFIG
 
 # === LIMITS
