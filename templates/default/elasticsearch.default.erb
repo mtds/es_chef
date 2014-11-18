@@ -30,6 +30,20 @@ ES_JAVA_OPTS="
   -Xss<%= node.elasticsearch[:thread_stack_size] %>
   <%= node.elasticsearch[:gc_settings] %>
 "
+# Elasticsearch log directory
+#LOG_DIR=/var/log/elasticsearch
+
+# Elasticsearch data directory
+#DATA_DIR=/var/lib/elasticsearch
+
+# Elasticsearch work directory
+#WORK_DIR=/tmp/elasticsearch
+
+# Elasticsearch configuration directory
+#CONF_DIR=/etc/elasticsearch
+
+# Elasticsearch configuration file (elasticsearch.yml)
+#CONF_FILE=/etc/elasticsearch/elasticsearch.yml
 
 # Configure restart on package upgrade (true, every other setting will lead to not restarting)
 RESTART_ON_UPGRADE=true
