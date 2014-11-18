@@ -9,6 +9,12 @@ ES_GROUP=<%= node.elasticsearch[:group] %>
 # Heap Size (defaults to 256m min, 1g max)
 ES_HEAP_SIZE=<%= node.elasticsearch[:allocated_memory] %>
 
+# Heap new generation
+#ES_HEAP_NEWSIZE=
+
+# max direct memory
+#ES_DIRECT_SIZE=
+
 # Maximum locked memory size. Set to "unlimited" if you use the
 # bootstrap.mlockall option in elasticsearch.yml. You must also set
 # ES_HEAP_SIZE.
