@@ -2,6 +2,12 @@
 # ANY MANUAL MODIFICATIONS WILL BE OVERWRITTEN
 # (managed by the elasticsearch cookbook)
 
+#
+# Detailed information about all the options are available here:
+#
+# http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-service.html
+# 
+
 # Run Elasticsearch as this user ID and group ID
 ES_USER=<%= node.elasticsearch[:user] %>
 ES_GROUP=<%= node.elasticsearch[:group] %>
@@ -12,7 +18,7 @@ ES_HEAP_SIZE=<%= node.elasticsearch[:allocated_memory] %>
 # Heap new generation
 #ES_HEAP_NEWSIZE=
 
-# max direct memory
+# Max direct memory
 #ES_DIRECT_SIZE=
 
 # Maximum locked memory size. Set to "unlimited" if you use the
