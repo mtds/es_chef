@@ -14,6 +14,13 @@ ES_HEAP_SIZE=<%= node.elasticsearch[:allocated_memory] %>
 # ES_HEAP_SIZE.
 MAX_LOCKED_MEMORY=<%= node.elasticsearch[:limits][:memlock] %>
 
+# Maximum number of VMA (Virtual Memory Areas) a process can own
+<% if node[:index][:store][:type]=='mmapfs' -%>
+MAX_MAP_COUNT=262144
+<% else -%>
+MAX_MAP_COUNT=65536
+<% end -%>
+
 # Additional Java OPTS
 ES_JAVA_OPTS="
   -server
