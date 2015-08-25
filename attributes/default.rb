@@ -14,12 +14,22 @@ default.elasticsearch[:node][:max_local_storage_nodes] = 1
 default.elasticsearch[:user] = "elasticsearch"
 default.elasticsearch[:group] = "elasticsearch"
 
-# === MEMORY
+# === HEAP SIZE
 #
-# Maximum amount of memory to use is automatically computed 
-# as one half of total available memory on the machine.
+# Maximum amount of RAM memory dedicated to the HEAP space of the JVM. 
+# 
+# Following the recommendations on the official guide:
+# https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html
 #
-allocated_memory = "#{(node.memory.total.to_i * 0.6 ).floor / 1024}m"
+# 1. Get the available memory on the machine and divide the result by half.
+#
+# 2. The heap size assigned to ES will be:
+#    a. 32 GB if half of the RAM available on the machine is more than that.
+#    b. otherwise it will be set to half of the memory available.
+#
+half_memory = (node.memory.total.to_i * 0.6 ).floor
+heap_size = ( half_memory >= 33554432 ? 33554432 : half_memory)
+allocated_memory = "#{heap_size / 1024}m"
 default.elasticsearch[:allocated_memory] = allocated_memory
 
 # === GARBAGE COLLECTION SETTINGS
