@@ -40,7 +40,7 @@ CONFIG
 #
 default.elasticsearch[:bootstrap][:mlockall] = ( node.memory.total.to_i >= 1048576 ? true : false )
 default.elasticsearch[:limits][:memlock] = 'unlimited'
-default.elasticsearch[:limits][:nofile]  = '64000'
+default.elasticsearch[:limits][:nofile]  = '65000'
 
 # === INDEX SETTINGS
 #
