@@ -20,6 +20,10 @@ The default attributes are used:
 - inside the ES Debian default file;
 - elasticsearch.yml (default configuration file).
 
+**NOTE**: The value of attributes related to threadpools, heap size and so on are based on
+          the recommendations on the official guide.
+          https://www.elastic.co/guide/en/elasticsearch/guide/current/administration.html
+
 Usage
 -----
 #### elasticsearch::default
