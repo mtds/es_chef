@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: es
+# Cookbook Name:: elasticsearch
 # Recipe:: default
 #
 # Copyright 2014, GSI HPC Team
