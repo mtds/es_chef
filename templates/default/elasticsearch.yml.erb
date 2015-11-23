@@ -214,9 +214,22 @@ bootstrap.mlockall: <%= node.elasticsearch[:bootstrap][:mlockall] %>
 #
 #transport.tcp.compress: true
 
+#
+# 'http.*' documentation reference:
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html
+#
+
 # Set a custom port to listen for HTTP traffic:
 #
 http.port: <%= node.elasticsearch[:http][:port] %>
+
+# Enable or disable cross-origin resource sharing, i.e. whether a browser on another 
+# origin can do requests to Elasticsearch. Defaults to false.
+http.cors.enabled: true
+
+# Which origins to allow. Defaults to no origins allowed.
+# It's not necessary specify the port unless it's different from 80. 
+http.cors.allow-origin: http://<%= node.elasticsearch[:node][:name] %>
 
 # Set a custom allowed content length:
 #
