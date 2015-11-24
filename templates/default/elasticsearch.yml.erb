@@ -8,6 +8,21 @@
 # targeted at operations staff. Application developers should
 # consult the guide at <http://elasticsearch.org/guide>.
 #
+# The installation procedure is covered at
+# <http://elasticsearch.org/guide/en/elasticsearch/reference/current/setup.html>.                                
+# 
+# Elasticsearch comes with reasonable defaults for most settings,                                                
+# so you can try it out without bothering with configuration.
+#
+# Most of the time, these defaults are just fine for running a production
+# cluster. If you're fine-tuning your cluster, or wondering about the
+# effect of certain configuration option, please _do ask_ on the
+# mailing list or IRC channel [http://elasticsearch.org/community].
+  
+# Any element in the configuration can be replaced with environment variables
+# by placing them in ${...} notation. For example:
+#
+#node.rack: ${RACK_ENV_VAR}
 
 # For information on supported formats and syntax for the config file, see
 # <http://elasticsearch.org/guide/en/elasticsearch/reference/current/setup-configuration.html>
@@ -38,6 +53,34 @@ node.master: <%= node.elasticsearch[:node][:master] %>
 # Allow this node to store data (enabled by default):
 #
 node.data: <%= node.elasticsearch[:node][:data] %>
+
+# You can exploit these settings to design advanced cluster topologies.
+#
+# 1. You want this node to never become a master node, only to hold data.
+#    This will be the "workhorse" of your cluster.
+#
+#node.master: false
+#node.data: true
+#
+# 2. You want this node to only serve as a master: to not store any data and
+#    to have free resources. This will be the "coordinator" of your cluster.
+#
+#node.master: true
+#node.data: false
+#
+# 3. You want this node to be neither master nor data node, but
+#    to act as a "search load balancer" (fetching data from nodes,
+#    aggregating results, etc.)
+#
+#node.master: false
+#node.data: false
+  
+# Use the Cluster Health API [http://localhost:9200/_cluster/health], the
+# Node Info API [http://localhost:9200/_nodes] or GUI tools
+# such as <http://www.elasticsearch.org/overview/marvel/>,
+# <http://github.com/karmi/elasticsearch-paramedic>,
+# <http://github.com/lukas-vlcek/bigdesk> and
+# <http://mobz.github.com/elasticsearch-head> to inspect the cluster state.
 
 # A node can have generic attributes associated with it, which can later be used
 # for customized shard allocation filtering, or allocation awareness. An attribute
