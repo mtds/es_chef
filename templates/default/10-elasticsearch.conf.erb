@@ -3,7 +3,7 @@
 # (managed by the elasticsearch cookbook)
 
 # Elasticsearch open files limit (ref: http://www.elasticsearch.org/tutorials/too-many-open-files):
-elasticsearch - nofile <%= node[:elasticsearch][:limits][:nofile] %>
+elasticsearch - nofile <%= node['elasticsearch']['limits']['nofile'] %>
 
 # Avoid the risk of swapping for the ES processes:
-elasticsearch - memlock <%= node[:elasticsearch][:limits][:memlock] %>
+elasticsearch - memlock <%= node['elasticsearch']['limits']['memlock'] %>

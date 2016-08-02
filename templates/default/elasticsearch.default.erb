@@ -34,7 +34,7 @@
 #PID_DIR=/var/run/elasticsearch
 
 # Heap Size (defaults to 256m min, 1g max)
-ES_HEAP_SIZE=<%= node.elasticsearch[:allocated_memory] %>
+ES_HEAP_SIZE=<%= node.elasticsearch['allocated_memory'] %>
 
 # Heap new generation
 #ES_HEAP_NEWSIZE=
@@ -46,10 +46,10 @@ ES_HEAP_SIZE=<%= node.elasticsearch[:allocated_memory] %>
 ES_JAVA_OPTS="
   -server
   -Djava.net.preferIPv4Stack=true
-  -Xms<%= node.elasticsearch[:allocated_memory] %>
-  -Xmx<%= node.elasticsearch[:allocated_memory] %>
-  -Xss<%= node.elasticsearch[:thread_stack_size] %>
-  <%= node.elasticsearch[:gc_settings] %>
+  -Xms<%= node.elasticsearch['allocated_memory'] %>
+  -Xmx<%= node.elasticsearch['allocated_memory'] %>
+  -Xss<%= node.elasticsearch['thread_stack_size'] %>
+  <%= node.elasticsearch['gc_settings'] %>
 "
 
 # Configure restart on package upgrade (true, every other setting will lead to not restarting)
@@ -70,8 +70,8 @@ RESTART_ON_UPGRADE=true
 # the configured user can read and write into the data, work, plugins and log directories.
 # For systemd service, the user is usually configured in file /usr/lib/systemd/system/elasticsearch.service
 #
-ES_USER=<%= node.elasticsearch[:user] %>
-ES_GROUP=<%= node.elasticsearch[:group] %>
+ES_USER=<%= node.elasticsearch['user'] %>
+ES_GROUP=<%= node.elasticsearch['group'] %>
 
 #########################
 ### System properties ###
@@ -82,7 +82,7 @@ ES_GROUP=<%= node.elasticsearch[:group] %>
 # elasticsearch.yml. You must also set ES_HEAP_SIZE.
 # When using Systemd, the LimitMEMLOCK property must be set
 # in /usr/lib/systemd/system/elasticsearch.service
-MAX_LOCKED_MEMORY=<%= node.elasticsearch[:limits][:memlock] %>
+MAX_LOCKED_MEMORY=<%= node.elasticsearch['limits']['memlock'] %>
 
 # Specifies the maximum file descriptor number that can be opened by 
 # this process. When using Systemd, this setting is ignored and the 
@@ -93,7 +93,7 @@ MAX_OPEN_FILES=65535
 # Maximum number of VMA (Virtual Memory Areas) a process can own.
 # When using Systemd, this setting is ignored and the 'vm.max_map_count'
 # property is set at boot time in /usr/lib/sysctl.d/elasticsearch.conf
-<% if node.elasticsearch[:index][:store][:type]=='mmapfs' -%>
+<% if node.elasticsearch['index']['store']['type']=='mmapfs' -%>
 MAX_MAP_COUNT=262144
 <% else -%>
 MAX_MAP_COUNT=65536

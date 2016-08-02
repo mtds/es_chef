@@ -33,7 +33,7 @@
 # Cluster name identifies your cluster for auto-discovery. If you're running
 # multiple clusters on the same network, make sure you're using unique names.
 #
-cluster.name: <%= node.elasticsearch[:cluster][:name] %>
+cluster.name: <%= node.elasticsearch['cluster']['name'] %>
 
 
 #################################### Node #####################################
@@ -41,18 +41,18 @@ cluster.name: <%= node.elasticsearch[:cluster][:name] %>
 # Node names are generated dynamically on startup, so you're relieved
 # from configuring them manually. You can tie this node to a specific name:
 #
-node.name: <%= node.elasticsearch[:node][:name] %>
+node.name: <%= node.elasticsearch['node']['name'] %>
 
 # Every node can be configured to allow or deny being eligible as the master,
 # and to allow or deny to store the data.
 #
 # Allow this node to be eligible as a master node (enabled by default):
 #
-node.master: <%= node.elasticsearch[:node][:master] %>
+node.master: <%= node.elasticsearch['node']['master'] %>
 #
 # Allow this node to store data (enabled by default):
 #
-node.data: <%= node.elasticsearch[:node][:data] %>
+node.data: <%= node.elasticsearch['node']['data'] %>
 
 # You can exploit these settings to design advanced cluster topologies.
 #
@@ -161,19 +161,19 @@ node.data: <%= node.elasticsearch[:node][:data] %>
 # the request.
 
 # Bulk pool
-threadpool.bulk.type: <%= node.elasticsearch[:threadpool][:bulk][:type] %>
-threadpool.bulk.size: <%= node.elasticsearch[:threadpool][:bulk][:size] %>
-threadpool.bulk.queue_size: <%= node.elasticsearch[:threadpool][:bulk][:queue_size] %>
+threadpool.bulk.type: <%= node.elasticsearch['threadpool']['bulk']['type'] %>
+threadpool.bulk.size: <%= node.elasticsearch['threadpool']['bulk']['size'] %>
+threadpool.bulk.queue_size: <%= node.elasticsearch['threadpool']['bulk']['queue_size'] %>
 
 # Index thread pool:
-threadpool.index.type: <%= node.elasticsearch[:threadpool][:index][:type] %>
-threadpool.index.size: <%= node.elasticsearch[:threadpool][:index][:size] %>
-threadpool.index.queue_size: <%= node.elasticsearch[:threadpool][:index][:queue_size] %>
+threadpool.index.type: <%= node.elasticsearch['threadpool']['index']['type'] %>
+threadpool.index.size: <%= node.elasticsearch['threadpool']['index']['size'] %>
+threadpool.index.queue_size: <%= node.elasticsearch['threadpool']['index']['queue_size'] %>
 
 # Search thread pool:
-threadpool.search.type: <%= node.elasticsearch[:threadpool][:search][:type] %>
-threadpool.search.size: <%= node.elasticsearch[:threadpool][:search][:size] %>
-threadpool.search.queue_size:  <%= node.elasticsearch[:threadpool][:search][:queue_size] %>
+threadpool.search.type: <%= node.elasticsearch['threadpool']['search']['type'] %>
+threadpool.search.size: <%= node.elasticsearch['threadpool']['search']['size'] %>
+threadpool.search.queue_size:  <%= node.elasticsearch['threadpool']['search']['queue_size'] %>
 
 
 #################################### Paths ####################################
@@ -219,7 +219,7 @@ threadpool.search.queue_size:  <%= node.elasticsearch[:threadpool][:search][:que
 #
 # Set this property to true to lock the memory:
 #
-bootstrap.mlockall: <%= node.elasticsearch[:bootstrap][:mlockall] %>
+bootstrap.mlockall: <%= node.elasticsearch['bootstrap']['mlockall'] %>
 
 # Make sure that the ES_MIN_MEM and ES_MAX_MEM environment variables are set
 # to the same value, and that the machine has enough memory to allocate
@@ -264,7 +264,7 @@ bootstrap.mlockall: <%= node.elasticsearch[:bootstrap][:mlockall] %>
 
 # Set a custom port to listen for HTTP traffic:
 #
-http.port: <%= node.elasticsearch[:http][:port] %>
+http.port: <%= node.elasticsearch['http']['port'] %>
 
 # Enable or disable cross-origin resource sharing, i.e. whether a browser on another 
 # origin can do requests to Elasticsearch. Defaults to false.
@@ -272,7 +272,7 @@ http.cors.enabled: true
 
 # Which origins to allow. Defaults to no origins allowed.
 # It's not necessary specify the port unless it's different from 80. 
-http.cors.allow-origin: http://<%= node.elasticsearch[:node][:name] %>
+http.cors.allow-origin: http://<%= node.elasticsearch['node']['name'] %>
 
 # Set a custom allowed content length:
 #
@@ -295,7 +295,7 @@ http.cors.allow-origin: http://<%= node.elasticsearch[:node][:name] %>
 
 # The default gateway type is the "local" gateway (recommended):
 #
-gateway.type: <%= node.elasticsearch[:gateway][:type] %>
+gateway.type: <%= node.elasticsearch['gateway']['type'] %>
 
 # Settings below control how and when to start the initial recovery process on
 # a full cluster restart (to reuse as much local data as possible when using shared
@@ -314,7 +314,7 @@ gateway.recover_after_nodes: 1
 # are up (and recover_after_nodes is met), begin recovery process immediately
 # (without waiting for recover_after_time to expire):
 #
-gateway.expected_nodes: <%= node.elasticsearch[:gateway][:expected_nodes] %>
+gateway.expected_nodes: <%= node.elasticsearch['gateway']['expected_nodes'] %>
 
 
 ############################# Recovery Throttling #############################
@@ -352,7 +352,7 @@ gateway.expected_nodes: <%= node.elasticsearch[:gateway][:expected_nodes] %>
 # operational within the cluster. Its recommended to set it to a higher value
 # than 1 when running more than 2 nodes in the cluster.
 #
-discovery.zen.minimum_master_nodes: <%= node.elasticsearch[:discovery][:zen][:minimum_master_nodes] %>
+discovery.zen.minimum_master_nodes: <%= node.elasticsearch['discovery']['zen']['minimum_master_nodes'] %>
 
 # Set the time to wait for ping responses from other nodes when discovering.
 # Set this option to a higher value on a slow or congested network
@@ -369,7 +369,7 @@ discovery.zen.minimum_master_nodes: <%= node.elasticsearch[:discovery][:zen][:mi
 #
 # 1. Disable multicast discovery (enabled by default):
 #
-discovery.zen.ping.multicast.enabled: <%= node.elasticsearch[:discovery][:zen][:ping][:multicast][:enabled] %>
+discovery.zen.ping.multicast.enabled: <%= node.elasticsearch['discovery']['zen']['ping']['multicast']['enabled'] %>
 #
 # 2. Configure an initial list of master nodes in the cluster
 #    to perform discovery when new nodes (master or data) are started:
