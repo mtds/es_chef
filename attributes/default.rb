@@ -80,8 +80,9 @@ default.elasticsearch['discovery']['zen']['minimum_master_nodes'] = 1
 
 # === GATEWAY SETTINGS
 #
-default.elasticsearch['gateway']['type'] = 'local'
 default.elasticsearch['gateway']['expected_nodes'] = 1
+default.elasticsearch['gateway']['recover_after_time'] = '5m'
+default.elasticsearch['gateway']['recover_after_nodes'] = 1
 
 # === THREAD STACK
 #
