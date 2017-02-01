@@ -321,10 +321,10 @@ gateway.expected_nodes: <%= node.elasticsearch['gateway']['expected_nodes'] %>
 # If the expected number of nodes is not achieved, the recovery process waits 
 # for the configured amount of time before trying to recover regardless. 
 # Defaults to 5m if one of the expected_nodes settings is configured.
-#gateway.recover_after_time: 5m
+gateway.recover_after_time: <%= node.elasticsearch['gateway']['recover_after_time'] %> 
 
 # Recover as long as this many data or master nodes have joined the cluster.
-gateway.recover_after_nodes: 1
+gateway.recover_after_nodes: <%= node.elasticsearch['gateway']['recover_after_nodes'] %>
 
 # Recover as long as this many master nodes have joined the cluster.
 #gateway.recover_after_master_nodes:
