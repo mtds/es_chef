@@ -290,32 +290,47 @@ http.cors.allow-origin: http://<%= node.elasticsearch['node']['name'] %>
 # in the gateway, and when the cluster starts up for the first time,
 # it will read its state from the gateway.
 
-# There are several types of gateway implementations. For more information, see
-# <http://elasticsearch.org/guide/en/elasticsearch/reference/current/modules-gateway.html>.
+# Local gateway module:
+# <https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-gateway.html>
 
-# The default gateway type is the "local" gateway (recommended):
 #
-gateway.type: <%= node.elasticsearch['gateway']['type'] %>
-
-# Settings below control how and when to start the initial recovery process on
-# a full cluster restart (to reuse as much local data as possible when using shared
-# gateway).
-
-# Allow recovery process after N nodes in a cluster are up:
+# The local gateway module stores the cluster state and shard data across full cluster restarts.
+# The following _static_ settings, which must be set on every master node, control how long a 
+# freshly elected master should wait before it tries to recover the cluster state and the cluster's data.
 #
-gateway.recover_after_nodes: 1
 
-# Set the timeout to initiate the recovery process, once the N nodes
-# from previous setting are up (accepts time value):
-#
-#gateway.recover_after_time: 5m
-
-# Set how many nodes are expected in this cluster. Once these N nodes
-# are up (and recover_after_nodes is met), begin recovery process immediately
-# (without waiting for recover_after_time to expire):
-#
+# The number of (data or master) nodes that are expected to be in the cluster. 
+# Recovery of local shards will start as soon as the expected number of nodes 
+# have joined the cluster. Defaults to 0.
 gateway.expected_nodes: <%= node.elasticsearch['gateway']['expected_nodes'] %>
 
+# The number of master nodes that are expected to be in the cluster. 
+# Recovery of local shards will start as soon as the expected number 
+# of master nodes have joined the cluster. Defaults to 0.
+# gateway.expected_master_nodes: 
+
+# The number of data nodes that are expected to be in the cluster. 
+# Recovery of local shards will start as soon as the expected number 
+# of data nodes have joined the cluster. Defaults to 0.
+# gateway.expected_data_nodes: 
+
+# Settings below control how and when to start the initial recovery process on
+# a full cluster restart (to reuse as much local data as possible when using a 
+# shared gateway).
+
+# If the expected number of nodes is not achieved, the recovery process waits 
+# for the configured amount of time before trying to recover regardless. 
+# Defaults to 5m if one of the expected_nodes settings is configured.
+#gateway.recover_after_time: 5m
+
+# Recover as long as this many data or master nodes have joined the cluster.
+gateway.recover_after_nodes: 1
+
+# Recover as long as this many master nodes have joined the cluster.
+#gateway.recover_after_master_nodes:
+
+# Recover as long as this many data nodes have joined the cluster.
+#gateway.recover_after_data_nodes: 
 
 ############################# Recovery Throttling #############################
 
