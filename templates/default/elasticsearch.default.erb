@@ -4,8 +4,8 @@
 
 #
 # Detailed information about all the options are available here:
-#
-# http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-service.html
+# (it depends on the ES version)
+# https://www.elastic.co/guide/en/elasticsearch/reference/index.html
 # 
 
 #####################
@@ -18,17 +18,11 @@
 # Elasticsearch configuration directory
 #CONF_DIR=/etc/elasticsearch
 
-# Elasticsearch configuration file (elasticsearch.yml)
-#CONF_FILE=/etc/elasticsearch/elasticsearch.yml
-
-# Elasticsearch work directory
-#WORK_DIR=/tmp/elasticsearch
+# Elasticsearch data directory
+#DATA_DIR=/var/lib/elasticsearch
 
 # Elasticsearch log directory
 #LOG_DIR=/var/log/elasticsearch
-
-# Elasticsearch data directory
-#DATA_DIR=/var/lib/elasticsearch
 
 # Elasticsearch PID directory
 #PID_DIR=/var/run/elasticsearch
@@ -52,7 +46,8 @@ ES_JAVA_OPTS="
   <%= node.elasticsearch['gc_settings'] %>
 "
 
-# Configure restart on package upgrade (true, every other setting will lead to not restarting)
+# Configure restart on package upgrade, defaults to false. This means you will have 
+# to restart your elasticsearch instance after installing a package manually. 
 RESTART_ON_UPGRADE=true
 
 # Path to the GC log file
@@ -73,9 +68,18 @@ RESTART_ON_UPGRADE=true
 ES_USER=<%= node.elasticsearch['user'] %>
 ES_GROUP=<%= node.elasticsearch['group'] %>
 
+# The number of seconds to wait before checking if Elasticsearch started successfully as a daemon process:
+ES_STARTUP_SLEEP_TIME=5
+
 #########################
 ### System properties ###
 #########################
+
+# Specifies the maximum file descriptor number that can be opened by 
+# this process. When using Systemd, this setting is ignored and the 
+# LimitNOFILE defined in /usr/lib/systemd/system/elasticsearch.service 
+# takes precedence.
+MAX_OPEN_FILES=65535
 
 # The maximum number of bytes of memory that may be locked into RAM. 
 # Set to "unlimited" if you use the bootstrap.mlockall option in 
@@ -83,12 +87,6 @@ ES_GROUP=<%= node.elasticsearch['group'] %>
 # When using Systemd, the LimitMEMLOCK property must be set
 # in /usr/lib/systemd/system/elasticsearch.service
 MAX_LOCKED_MEMORY=<%= node.elasticsearch['limits']['memlock'] %>
-
-# Specifies the maximum file descriptor number that can be opened by 
-# this process. When using Systemd, this setting is ignored and the 
-# LimitNOFILE defined in /usr/lib/systemd/system/elasticsearch.service 
-# takes precedence.
-MAX_OPEN_FILES=65535
 
 # Maximum number of VMA (Virtual Memory Areas) a process can own.
 # When using Systemd, this setting is ignored and the 'vm.max_map_count'
