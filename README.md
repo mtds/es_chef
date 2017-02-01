@@ -10,6 +10,11 @@ it. Only the very basic functionality are covered:
 Requirements
 ------------
 
+#### breaking changes
+
+Till version '0.1.10' this cookbook can be used with ES up to version 1.7.x.
+In order to use ES version 2.x it is necessary to use version '0.1.11'.
+
 #### packages
 - `openjdk-7-jdk` - Java is needed to run Elasticsearch (in this case the latest OpenJDK version). 
 
