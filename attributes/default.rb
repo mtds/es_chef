@@ -78,6 +78,11 @@ default.elasticsearch['threadpool']['search']['queue_size'] = 1000
 default.elasticsearch['discovery']['zen']['ping']['multicast']['enabled'] = false
 default.elasticsearch['discovery']['zen']['minimum_master_nodes'] = 1
 
+# === CORS SETTINGS
+#
+default.elasticsearch['http_cors']['enabled'] = false
+default.elasticsearch['http_cors']['allow_origin'] = "/https?:\/\/localhost(:[0-9]+)?/"
+
 # === GATEWAY SETTINGS
 #
 default.elasticsearch['gateway']['expected_nodes'] = 1
