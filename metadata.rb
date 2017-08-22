@@ -5,4 +5,4 @@ license          'All rights reserved'
 description      'Installs/Configures Elasticsearch instances'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.12'
-source_url       'https://gitorious.gsi.de/site-cookbooks/elasticsearch'
+source_url       'https://git.gsi.de/chef/cookbooks/elasticsearch'
